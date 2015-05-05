@@ -1,7 +1,7 @@
 pdf = Npm.require('html-pdf');
 
 Meteor.methods({
-    pdfStream: function (html) {
+    pdfStream: function (html, cb) {
         var pdfCreateStream = function (html, cb) {
             pdf.create(html).toStream(cb);
         };
@@ -15,7 +15,7 @@ Meteor.methods({
             console.log(e);
         }
     },
-    pdfBuffer: function (html) {
+    pdfBuffer: function (html, cb) {
         pdfCreateBuffer = function (html, cb) {
             pdf.create(html).toBuffer(cb);
         };
@@ -30,19 +30,15 @@ Meteor.methods({
         }
     },
     pdfCollection: function (html) {
-        pdfCreateBuffer = function (html, cb) {
-            pdf.create(html).toBuffer(cb);
+        pdfCreateBuffer = function (html, callback) {
+            pdf.create(html).toBuffer(callback);
         };
 
-        var buffer = Meteor.wrapAsync(pdfCreateBuffer);
+        var getBuffer = Meteor.wrapAsync(pdfCreateBuffer, this);
 
-        try {
-            var result = buffer(html);
-            var resultId = PdfCollection.insert({pdf: result});
-            return resultId;
-        } catch (e) {
-            console.log(e);
-        }
+        var result = getBuffer(html);
+        var resultId = PdfCollection.insert({pdf: result});
+        return resultId;
     }
 });
 

@@ -1,7 +1,7 @@
 Package.describe({
     name: "kepler:html-pdf",
     summary: "Meteor wrapper for the NPM html-pdf",
-    version: "0.1.3",
+    version: "0.1.4",
     git: "https://github.com/kepler/meteor-html-pdf"
 });
 
@@ -16,7 +16,7 @@ Package.onUse(function (api) {
     api.use('pfafman:filesaver@0.1.0');
 
     api.addFiles([
-        'server/html-pdf.js',
+        'server/html-pdf.js'
     ], ['server']);
     api.addFiles([
         'client/subscription.js'

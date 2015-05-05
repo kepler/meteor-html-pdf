@@ -2,6 +2,15 @@
 
 This is a fork of jgdovin:html-pdf, a Meteor wrapper for the NPM html-pdf.
 
+## Windows support
+
+This package seems not to work consistently on Windows because of node.js issues.
+* http://stackoverflow.com/questions/24356803/cant-write-to-a-spawned-child-processs-stdin-on-windows
+* May be also: http://stackoverflow.com/questions/14532725/error-running-example-code-in-a-serialized-loop
+
+Other cause of issues might be wrapAsync:
+* https://github.com/meteor/meteor/issues/2774
+* http://stackoverflow.com/a/29602309/36195
 
 ## Installation
 
